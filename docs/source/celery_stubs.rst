@@ -1,10 +1,10 @@
-__project__ package
+celery_stubs package
 ==============
 
 Module contents
 ---------------
 
-.. automodule:: __project__
+.. automodule:: celery_stubs
    :members:
    :undoc-members:
    :show-inheritance:
