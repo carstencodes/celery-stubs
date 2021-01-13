@@ -12,23 +12,35 @@ import unittest
 
 import celery_stubs
 
+
 class MockAsyncResult:
     pass
 
+
 class MockCelery:
-    def send_task(self, name, *args, result_cls=None, countdown=None, eta=None, expires=None):
-        setattr(self, 'name', name)
-        setattr(self, 'args', args)
-        setattr(self, 'result_cls', result_cls)
-        setattr(self, 'countdown', countdown)
-        setattr(self, 'eta', eta)
-        setattr(self, 'expires', expires)
+    def send_task(
+        self,
+        name,
+        *args,
+        result_cls=None,
+        countdown=None,
+        eta=None,
+        expires=None,
+    ):
+        setattr(self, "name", name)
+        setattr(self, "args", args)
+        setattr(self, "result_cls", result_cls)
+        setattr(self, "countdown", countdown)
+        setattr(self, "eta", eta)
+        setattr(self, "expires", expires)
 
         return MockAsyncResult()
+
 
 class MyTask(celery_stubs.AsyncRemoteTask):
     def __init__(self, celery, *args) -> None:
         super().__init__("my_task", celery, *args)
+
 
 class BasicTest(unittest.TestCase):
     def test_name(self):
@@ -83,5 +95,6 @@ class BasicTest(unittest.TestCase):
         self.assertIsNone(celery.eta)
         self.assertEqual(celery.expires, tomorrow)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main
