@@ -8,7 +8,7 @@
 #
 
 from typing import (
-    Generic,
+    Generic, OrderedDict,
     Tuple,
     TypeVar,
     NamedTuple,
@@ -20,6 +20,7 @@ from typing import (
 
 # from typing import List
 from datetime import datetime
+from dataclasses import dataclass, asdict, field
 
 from celery import Celery
 from celery.result import AsyncResult, ResultBase
@@ -29,14 +30,14 @@ from celery.result import AsyncResult, ResultBase
 # from kombu import Producer, Connection
 
 
-TResultType = TypeVar("TResultType", ResultBase)
+TResultType = TypeVar("TResultType", bound=ResultBase)
 
 
-class CeleryOptions(NamedTuple):
-    countdown: Optional[float] = None
-    eta: Optional[datetime] = None
-    expires: Optional[Union[datetime, float]] = None
-
+@dataclass
+class CeleryOptions():
+    countdown: Optional[float] = field(init=False, repr=True, default=None)
+    eta: Optional[datetime] = field(init=False, repr=True, default=None)
+    expires: Optional[Union[datetime, float]] = field(init=False, repr=True, default=None)
 
 #    producer: Optional[Producer] = None
 #    connection: Optional[Connection] = None
@@ -81,7 +82,7 @@ class RemoteTask(Generic[TResultType], _CeleryDependent):
 
     def _send(self, *, options: Optional[CeleryOptions] = None) -> TResultType:
         opts = options or CeleryOptions()
-        d_opts: Dict[str, Any] = dict(opts)
+        d_opts: Dict[str, Any] = asdict(opts)
         return self._celery.send_task(
             self.name, *self.__args, result_cls=TResultType, **d_opts
         )

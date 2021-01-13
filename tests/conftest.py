@@ -1,3 +1,12 @@
+#
+# Copyright (c) 2021 Carsten Igel.
+#
+# This file is part of celery-stubs
+# (see https://github.com/carstencodes/celery-stubs).
+#
+# License: 3-clause BSD, see https://opensource.org/licenses/BSD-3-Clause
+#
+
 import sys
 import os
 
