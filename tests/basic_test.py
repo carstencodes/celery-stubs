@@ -1,8 +1,8 @@
 #
 # Copyright (c) 2021 Carsten Igel.
 #
-# This file is part of celery-stubs
-# (see https://github.com/carstencodes/celery-stubs).
+# This file is part of celery-client-stubs
+# (see https://github.com/carstencodes/celery-client-stubs).
 #
 # License: 3-clause BSD, see https://opensource.org/licenses/BSD-3-Clause
 #
@@ -10,7 +10,7 @@
 from datetime import datetime, timedelta
 import unittest
 
-import celery_stubs
+import celery_client_stubs
 
 
 class MockAsyncResult:
@@ -37,7 +37,7 @@ class MockCelery:
         return MockAsyncResult()
 
 
-class MyTask(celery_stubs.AsyncRemoteTask):
+class MyTask(celery_client_stubs.AsyncRemoteTask):
     def __init__(self, celery, *args) -> None:
         super().__init__("my_task", celery, *args)
 

@@ -19,7 +19,7 @@ def sum(a, b):
 ## Client
 
 # Proxy Definition
-class _CalculateSumTask(celery_stubs.AsyncRemoteTask):
+class _CalculateSumTask(celery_client_stubs.AsyncRemoteTask):
     def __init__(self, celery, *args):
         super().__init__("calculate_sum", celery, *args)
 
@@ -50,7 +50,7 @@ The class itself provides an `RemoteTaskFactory`, that can be used:
 
 # Definition
 
-class MyRemoteTasks(celery_stubs.RemoteTaskFactory):
+class MyRemoteTasks(celery_client_stubs.RemoteTaskFactory):
     def sum(self, a, b):
         task = celery.AsyncRemoteTask("calculate_sum", self._celery, a, b)
 

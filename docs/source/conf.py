@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath(os.path.join("..", "..", "src")))
 
 # -- Project information -----------------------------------------------------
 
-project = "celery_stubs"
+project = "celery_client_stubs"
 copyright = "2021, Carsten Igel"
 author = "Carsten Igel"
 

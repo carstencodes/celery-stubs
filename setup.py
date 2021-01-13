@@ -9,7 +9,7 @@ with open("README.md", "r") as read_me_file:
     long_description = read_me_file.read()
 
 setup(
-    name="celery_stubs",
+    name="celery_client_stubs",
     version=__VERSION__,
     license="BSD 3-Clause",
     author="Carsten Igel",
@@ -18,7 +18,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(where="src"),
-    url="https://github.com/carstencodes/celery_stubs",
+    url="https://github.com/carstencodes/celery_client_stubs",
     install_requires=[],
     package_dir={"": "src"},
     keywords="",
