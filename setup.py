@@ -19,7 +19,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(where="src"),
     url="https://github.com/carstencodes/celery_client_stubs",
-    install_requires=[],
+    install_requires=["celery >= 5.0"],
     package_dir={"": "src"},
     keywords="",
     python_requires=">=3.7, < 4",
